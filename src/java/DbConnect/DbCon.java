@@ -26,10 +26,10 @@ public class DbCon {
         public DbCon() //throws SQLException
 	{
                 try{
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                
-                url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3";
-		conn = DriverManager.getConnection(url, "sa", "sms");
+                        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3";
+                         conn = DriverManager.getConnection(url, "sa", "sms");
+                         stmt=conn.createStatement(); 
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -48,6 +48,37 @@ public class DbCon {
                 }           
             return re;
         }
+        public boolean loginck(String user,String psd) throws SQLException
+        {
+            sql = "select * from Users where Name = '" +user +"'";
+
+            try{
+                // pstmt = conn.prepareStatement(sql);
+                // re = pstmt.executeQuery(sql);
+                re = stmt.executeQuery(sql);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            if(re.next()&&psd.equals(re.getString("LoginPwd")))
+                return true;
+                else return false;
+            
+           
+            
+        }
+        
+        public ResultSet executeQuery(String sql)
+        {
+            System.out.println("查询语句："+sql);
+            ResultSet rs1 =null;
+            try{
+            rs1=stmt.executeQuery(sql);       
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+         return rs1;   
+        } 
         
     
 }
