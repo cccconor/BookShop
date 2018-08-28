@@ -88,13 +88,15 @@ public class loginck extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-        String use = request.getParameter("Username");
-        String psd = request.getParameter("Password");
+        String use = request.getParameter("Use");
+        String psd = request.getParameter("Psd");
+//        System.out.print(use);
+ //       System.out.print(psd);
         DbCon db = new DbCon();
-        String sql = "select * from Users where Name = "+"123";
+        String sql = "select LoginPwd from Users where Name = '" + use + "'";
         ResultSet r = db.executeQuery(sql);
         if(r.next()&&r.getString(1).equals(psd)) {
-             out.println("<script language ='javaScript'>alert('登陆，请重试！');</script>");
+//             out.println("<script language ='javaScript'>alert('登陆，请重试！');</script>");
             response.setHeader("refresh", "0;url=main.jsp");
         }
          else   {
