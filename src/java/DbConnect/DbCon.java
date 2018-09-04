@@ -6,6 +6,7 @@
 package DbConnect;
 
 import java.sql.*;
+import serve.user;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.sql.*;
  */
 public class DbCon {
      private Connection conn;
-	private String url;
+     private String url;
         private String s1 = " ";
         private PreparedStatement pstmt = null;
         private Statement stmt=null;
@@ -79,6 +80,21 @@ public class DbCon {
 
          return rs1;   
         } 
+        
+        public int adduser(user u) throws SQLException
+        {
+            sql = "insert into Users values(?,?,?,?,?,?,?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, u.getName());
+            pstmt.setString(2, u.getPsd());
+            pstmt.setString(3, u.getName());
+            pstmt.setString(4, u.getAddr());
+            pstmt.setString(5, u.getPhone());
+            pstmt.setString(6, u.getEmail());
+            pstmt.setInt(7, 2);
+            int r = pstmt.executeUpdate();
+            return r;
+        }
         
     
 }
