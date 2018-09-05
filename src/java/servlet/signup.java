@@ -15,7 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import serve.user;
+
 
 /**
  *
@@ -78,6 +80,7 @@ public class signup extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
         String name = request.getParameter("Name");
         String email = request.getParameter("Email");
@@ -85,6 +88,7 @@ public class signup extends HttpServlet {
         String phon = request.getParameter("Phone Number");
         String addr = request.getParameter("addr");
         user u = new user();
+        //mailserv m = new mailserv();
         u.setName(name);
         u.setPsd(psd);
         u.setEmail(email);
@@ -97,9 +101,13 @@ public class signup extends HttpServlet {
             Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
             System.out.print(ex.getMessage());
         }
+        //m.setto(email);
+        //m.setcontent("this is a test mail!");
+        //boolean re = m.send();
         if(r==1){
-            out.println("<script language ='javaScript'>alert('注册成功！');</script>");
-            response.setHeader("refresh", "0;url=login.html");
+            session.setAttribute("user", name);
+            out.println("<script language ='javaScript'>alert('注册成功,即将跳转至激活页面！');</script>");
+            response.setHeader("refresh", "3;url=activation.html");
         }else {
             out.println("<script language ='javaScript'>alert('注册失败！');</script>");
             response.setHeader("refresh", "0;url=login.html");

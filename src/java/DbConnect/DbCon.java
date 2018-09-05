@@ -6,7 +6,10 @@
 package DbConnect;
 
 import java.sql.*;
+import java.util.*;
 import serve.user;
+import serve.getmd5;
+import serve.mailserv;
 
 /**
  *
@@ -93,7 +96,27 @@ public class DbCon {
             pstmt.setString(6, u.getEmail());
             pstmt.setInt(7, 2);
             int r = pstmt.executeUpdate();
-            return r;
+            if(r==1)
+            {
+                getmd5 g  = new getmd5();
+                java.util.Date d;
+               d = new java.util.Date();
+                String md = g.getMd5(u.getName()+d);
+                sql = "insert into CheckEmail values((select Id from Users where Name = '" + u.getName() + "'),'false','" + md +"')";
+                if(stmt.executeUpdate(sql)!=0)
+                {
+                    mailserv m = new mailserv();
+                    m.setto(u.getEmail());
+                    m.setcontent(md);
+                    m.send();
+                    return 1;
+                }else return -1;
+                    
+            }
+            else return -1;
+           
+            
+           // return r;
         }
         
     
