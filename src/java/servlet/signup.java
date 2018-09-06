@@ -109,7 +109,7 @@ public class signup extends HttpServlet {
             out.println("<script language ='javaScript'>alert('注册成功,即将跳转至激活页面！');</script>");
             response.setHeader("refresh", "3;url=activation.html");
         }else {
-            out.println("<script language ='javaScript'>alert('注册失败！');</script>");
+            out.println("<script language ='javaScript'>alert('注册失败，用户名已存在，请重试！');</script>");
             response.setHeader("refresh", "0;url=login.html");
         }
         //processRequest(request, response);

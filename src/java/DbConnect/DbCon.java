@@ -102,12 +102,15 @@ public class DbCon {
                 java.util.Date d;
                d = new java.util.Date();
                 String md = g.getMd5(u.getName()+d);
+                String url = "localhost:8080/BookShop/activationck?user=" + u.getName()+"&actcode="+md;
+                String s = "亲爱的"+u.getName()+"你好，你的激活码是   " + md + "    或者你可以点击下面的链接进行激活："+"<a href = '"+url+"'>点此前往激活页面</a>";
+                s= s +"如果没有反应请复制下面的链接到地址栏中访问激活页面：      "+url;
                 sql = "insert into CheckEmail values((select Id from Users where Name = '" + u.getName() + "'),'false','" + md +"')";
                 if(stmt.executeUpdate(sql)!=0)
                 {
                     mailserv m = new mailserv();
                     m.setto(u.getEmail());
-                    m.setcontent(md);
+                    m.setcontent(s);
                     m.send();
                     return 1;
                 }else return -1;

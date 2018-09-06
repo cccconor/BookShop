@@ -93,14 +93,27 @@ public class loginck extends HttpServlet {
 //        System.out.print(use);
  //       System.out.print(psd);
         DbCon db = new DbCon();
-        String sql = "select LoginPwd from Users where Name = '" + use + "'";
+        String sql = "select * from Users where Name = '" + use + "'";
         ResultSet r = db.executeQuery(sql);
-        if(r.next()&&r.getString(1).equals(psd)) {
-//             out.println("<script language ='javaScript'>alert('登陆，请重试！');</script>");
-            response.setHeader("refresh", "0;url=main.jsp");
+        if(r.next()) {
+            if(r.getString("LoginPwd").equals(psd))
+            {
+                if(r.getInt("UserStateId")==1){
+                    out.println("<script language ='javaScript'>alert('登陆成功，欢迎使用！');</script>");
+                    response.setHeader("refresh", "0;url=main.jsp");
+                }else {
+                    out.println("<script language ='javaScript'>alert('用户未激活，请前往激活页面进行激活操作！');</script>");
+                     response.setHeader("refresh", "0;url=activation.html");
+                }
+            }
+            else {
+                out.println("<script language ='javaScript'>alert('密码错误，请重试！');</script>");
+                response.setHeader("refresh", "0;url=login.html");
+            }
+            
         }
          else   {
-            out.println("<script language ='javaScript'>alert('登陆失败，请重试！');</script>");
+            out.println("<script language ='javaScript'>alert('用户名不存在，请重试！');</script>");
             //response.sendRedirect("main.jsp");
             response.setHeader("refresh", "0;url=login.html");
         }
