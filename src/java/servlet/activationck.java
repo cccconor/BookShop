@@ -94,6 +94,7 @@ public class activationck extends HttpServlet {
                     db.executeQuery(sql);
                     sql = "update Users set UserStateId = 1 where Id = '" + id + "'";
                     db.executeQuery(sql);
+                    session.setAttribute("user", name);
                     out.println("<script language ='javaScript'>alert('激活成功！');</script>");
                     response.setHeader("refresh", "0;url=main.jsp");
                 }else {

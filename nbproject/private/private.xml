@@ -5,14 +5,12 @@
         <group>
             <file>file:/E:/softwaredata/github/BookShop/web/main.jsp</file>
             <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/loginck.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/web/activation.html</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/activationck.java</file>
+            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/reinfo.java</file>
+            <file>file:/E:/softwaredata/github/BookShop/web/repsd.jsp</file>
             <file>file:/E:/softwaredata/github/BookShop/web/index.html</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/signup.java</file>
+            <file>file:/E:/softwaredata/github/BookShop/web/login.html</file>
             <file>file:/E:/softwaredata/github/BookShop/src/java/DbConnect/DbCon.java</file>
             <file>file:/E:/softwaredata/github/BookShop/src/java/serve/user.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/serve/getmd5.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/serve/mailserv.java</file>
         </group>
     </open-files>
 </project-private>

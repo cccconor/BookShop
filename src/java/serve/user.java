@@ -17,6 +17,9 @@ public class user {
     private String psd;
     private String phone;
     private String addr;
+    private String loginid;
+    private int state;
+    private int id;
     
     public user()
     {
@@ -25,6 +28,8 @@ public class user {
         this.psd=null;
         this.phone=null;
         this.addr=null;
+        this.state = 3;
+        this.id = 0;
     }
     
     public void setName(String s)
@@ -44,8 +49,22 @@ public class user {
         this.phone=s;
     }
     public void setaddr(String s)
+            
     {
         this.addr=s;
+    }
+    public void setloginid(String s)
+            
+    {
+        this.loginid=s;
+    }
+    public void setstate(int i)
+    {
+        this.state = i;
+    }
+    public void setid(int i)
+    {
+        this.id = i;
     }
     
     public String getName()
@@ -68,6 +87,18 @@ public class user {
     {
         return this.addr;
     }
+    public String getloginid()
+    {
+        return this.loginid;
+    }
+    public int getstate()
+    {
+        return this.state;
+    }
+    public int getid()
+    {
+        return this.id;
+    }
     
     public int adduser(user u) throws SQLException{
         DbCon db = new DbCon();
@@ -76,5 +107,43 @@ public class user {
         else return -1;
         
     }
+    public user getallinfo(String s) throws SQLException
+    {
+        user u = new user();
+        u.setName(s);
+        DbCon db = new DbCon();
+        String sql = "select * from Users where Name ='"+ u.getName()+"'";
+        ResultSet r = db.executeQuery(sql);
+        if(r.next())
+        {
+            u.setPsd(r.getString("LoginPwd"));
+            u.setPhone(r.getString("Phone"));
+            u.setEmail(r.getString("Mail"));
+            u.setstate(r.getInt("Id"));
+            u.setstate(r.getInt("UserStateId"));
+            u.setaddr(r.getString("Address"));
+            u.setloginid(r.getString("LoginId"));
+            
+            
+        }
+        return u;
+    }
+    
+    public user upinfo(user u) throws SQLException
+    {
+         
+         DbCon db = new DbCon();
+         if(db.upuserinfo(u)==1) return u;
+         else return new user();
+         
+         
+    }
+    public int repsd(user u) throws SQLException
+    {
+        DbCon db = new DbCon();
+        String sql = "update Users set LoginPwd='"+ u.getPsd()+"'"+"where Name='"+u.getName()+"'";
+        return db.executeupdate(sql);
+    }
+        
     
 }

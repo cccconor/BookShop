@@ -82,7 +82,11 @@ public class DbCon {
         }
 
          return rs1;   
-        } 
+        }
+        public int executeupdate(String s) throws SQLException
+        {
+            return stmt.executeUpdate(s);
+        }
         
         public int adduser(user u) throws SQLException
         {
@@ -122,5 +126,16 @@ public class DbCon {
            // return r;
         }
         
+        public int upuserinfo(user u) throws SQLException
+        {
+             sql = "update Users set LoginId=?,Address=?,Phone=?,Mail=? where Name =?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, u.getloginid());
+            pstmt.setString(2, u.getAddr());
+            pstmt.setString(3, u.getPhone());
+            pstmt.setString(4, u.getEmail());
+            pstmt.setString(5, u.getName());
+            return pstmt.executeUpdate();
+        }
     
 }

@@ -5,6 +5,11 @@
    <title>bookshop</title>
    </head>
    <body>
+       <%
+           String user = (String)session.getAttribute("user");
+           String uid = (String)session.getAttribute("uid");
+           %>
+           <p>当前登陆用户为<%=user%>该用户的昵称为<%=uid%></p>
        <table cellspacing="10">
             
             <%
@@ -26,5 +31,6 @@
                 %>
         
         </table>
+                <p>这里是主页。。。<a href="repsd.jsp">前往用户信息详情页</a></p>
    </body>
 </html>

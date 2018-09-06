@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -80,6 +81,7 @@ public class loginck extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -99,6 +101,8 @@ public class loginck extends HttpServlet {
             if(r.getString("LoginPwd").equals(psd))
             {
                 if(r.getInt("UserStateId")==1){
+                    session.setAttribute("user", use);
+                    session.setAttribute("uid", r.getString("LoginId"));
                     out.println("<script language ='javaScript'>alert('登陆成功，欢迎使用！');</script>");
                     response.setHeader("refresh", "0;url=main.jsp");
                 }else {
