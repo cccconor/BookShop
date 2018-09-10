@@ -5,6 +5,9 @@
  */
 package serve;
 
+import DbConnect.DbCon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,11 +26,17 @@ public class pageserv<t> {
     private List<t> list;
     
     
-    public pageserv( int pageNum,int pagesize,int totalRecord)
+    public pageserv( int pageNum,int pagesize) throws SQLException
     {
+        DbCon db = new DbCon();
+        String sql = "select COUNT(*) as count from Books";
+        ResultSet r = db.executeQuery(sql);
+        if(r.next()) this.totalRecord = r.getInt(1);
+        else return;
+        //this.totalRecord=1096;
+        
         this.pageNum=pageNum;
         this.pageSize = pagesize;
-        this.totalRecord = totalRecord;
         if(totalRecord%pagesize==0)this.totalPage = totalRecord/pagesize;
         else this.totalPage = totalRecord/pagesize+1;
          
@@ -38,7 +47,7 @@ public class pageserv<t> {
         else {
             this.start = pageNum-2;
             this.end = pageNum+2;
-            if(start<0){
+            if(start<=0){
                 this.start = 1;
                 this.end = 5;
             }
@@ -64,6 +73,22 @@ public class pageserv<t> {
     public void setPageSize(int s)
     {
         this.pageSize = s;
+    }
+    public int getstart()
+    {
+        return start;
+    }
+    public int getend()
+    {
+        return end;
+    }
+    public int gettotalpage()
+    {
+        return totalPage;
+    }
+    public int gettotalrecord()
+    {
+        return totalRecord;
     }
     
 }

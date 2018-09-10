@@ -6,6 +6,7 @@ import javax.servlet.jsp.*;
 import DbConnect.DbCon;
 import java.sql.ResultSet;
 import serve.book;
+import serve.pageserv;
 
 public final class main_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -60,10 +61,20 @@ public final class main_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("   <title>bookshop</title>\r\n");
       out.write("   </head>\r\n");
       out.write("   <body>\r\n");
+      out.write("       \r\n");
       out.write("       ");
 
            String user = (String)session.getAttribute("user");
            String uid = (String)session.getAttribute("uid");
+           String apage =  request.getParameter("curpage");
+           int curpage = 0;
+           if(apage==null)
+           {
+                curpage = 1;
+           }else  curpage = Integer.valueOf(apage).intValue();
+           pageserv pages = new pageserv(curpage,30);
+           
+           
            
       out.write("\r\n");
       out.write("           <p>当前登陆用户为");
@@ -96,7 +107,7 @@ public final class main_jsp extends org.apache.jasper.runtime.HttpJspBase
                 //String sql="select a.sid,a.name,a.sex,c.cid,c.name,b.score from student a left join grade b on a.sid=b.sid left join course c on b.cid=c.cid;";
                 //ResultSet re =main.test();
                 book b =new book();
-                ResultSet re = b.getbooks(1, 30);
+                ResultSet re = b.getbooks(curpage, 30);
                 String s;
                 while(re.next()){
                     //out.print("<td>"+re.getString(1)+re.getString(2)+re.getString(3)+re.getString(5)+re.getString(6)+re.getString(7)+"</td>");
@@ -121,18 +132,20 @@ public final class main_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        \r\n");
       out.write("        </table>\r\n");
       out.write("                <p>\r\n");
-      out.write("                    ");
-      out.print(b.getbookbyisbn("9787115145543").gettitle() );
-      out.write("\r\n");
-      out.write("                    ");
-      out.print(b.getbookbyname("C++Primer Plus（第五版）中文版").getisbn() );
-      out.write("\r\n");
-      out.write("                    ");
-      out.print(b.getcategory(1) );
-      out.write("\r\n");
-      out.write("                    ");
-      out.print( b.getpublish(17) );
-      out.write("\r\n");
+      out.write("                    <a href=\"main.jsp?curpage=1\">首页</a>\r\n");
+      out.write("                    <a href=\"main.jsp?curpage=");
+pages.getstart();
+      out.write("\">第");
+      out.print(pages.getstart());
+      out.write("页</a>\r\n");
+      out.write("                    <a href=\"main.jsp?curpage=");
+pages.getend();
+      out.write("\">第");
+      out.print(pages.getend());
+      out.write("页</a>\r\n");
+      out.write("                    <a href=\"main.jsp?curpage=");
+      out.print(pages.gettotalpage());
+      out.write("\">末页</a>\r\n");
       out.write("                </p>\r\n");
       out.write("                <p>这里是主页。。。<a href=\"repsd.jsp\">前往用户信息详情页</a></p>\r\n");
       out.write("   </body>\r\n");
