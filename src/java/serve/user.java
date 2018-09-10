@@ -144,6 +144,14 @@ public class user {
         String sql = "update Users set LoginPwd='"+ u.getPsd()+"'"+"where Name='"+u.getName()+"'";
         return db.executeupdate(sql);
     }
+    
+    
+    public ResultSet getcart(int id)
+    {
+        DbCon db = new DbCon();
+        String sql = "select * from Cart where UserId="+id;
+        return db.executeQuery(sql);
+    }
         
     
 }

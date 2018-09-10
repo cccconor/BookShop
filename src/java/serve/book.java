@@ -27,6 +27,7 @@ public class book {
     private String toc;
     private int categorid;
     private int clicks;
+    private int id;
     
     
     
@@ -44,6 +45,7 @@ public class book {
         this.clicks = 0;
         this.price = 0.0;
         this.condes = null;
+        this.id = 0;
     }
     
     
@@ -99,6 +101,10 @@ public class book {
     {
         this.price = i;
     }
+    public void setid(int i)
+    {
+        this.id = i;
+    }
     
     
     
@@ -129,7 +135,7 @@ public class book {
     {
         return condes;
     }
-    public String getsudes()
+    public String getaudes()
     {
         return audes;
     }
@@ -157,6 +163,10 @@ public class book {
     {
         return price;
     }
+    public int getid()
+    {
+        return id;
+    }
     
     
     
@@ -169,6 +179,7 @@ public class book {
         if(r.next())
         {
             b.settitle(s);
+            b.setid(r.getInt("Id"));
             b.setauthor(r.getString("Author"));
             b.setpublishdate((String)r.getString("PublishDate"));
             b.setisbn(r.getString("ISBN"));
@@ -203,10 +214,11 @@ public class book {
         book b = new book();
         if(r.next())
         {
+            b.setid(r.getInt("Id"));
             b.settitle(r.getString("Title"));
             b.setauthor(r.getString("Author"));
             b.setpublishdate((String)r.getString("PublishDate"));
-            b.setisbn(r.getString("ISBN"));
+            //b.setisbn(r.getString("ISBN"));
             b.setwordscount(r.getInt("WordsCount"));
             b.setprice(r.getDouble("UnitPrice"));
             b.setcondes(r.getString("ContentDescription"));
@@ -226,6 +238,33 @@ public class book {
 //            r = db.executeQuery(sql);
 //            if(r.next())b.setcategor(r.getString(1));
 //            else b.setcategor("分类");
+        }
+        return b;
+    }
+    
+    
+    public book getbookbyid(int i) throws SQLException
+    {
+        String sql = "select * from Books where Id ="+i;
+        DbCon db = new DbCon();
+        ResultSet r = db.executeQuery(sql);
+        book b = new book();
+        if(r.next())
+        {
+            //b.setisbn(r.getString("ISBN"));
+            b.settitle(r.getString("Title"));
+            b.setauthor(r.getString("Author"));
+            b.setpublishdate((String)r.getString("PublishDate"));
+            b.setisbn(r.getString("ISBN"));
+            b.setwordscount(r.getInt("WordsCount"));
+            b.setprice(r.getDouble("UnitPrice"));
+            b.setcondes(r.getString("ContentDescription"));
+            b.setaudes(r.getString("AurhorDescription"));
+            b.setedicom(r.getString("EditorComment"));
+            b.settoc(r.getString("TOC"));
+            b.setclicks(r.getInt("Clicks"));
+            b.setcategorid(r.getInt("CategoryId"));
+            b.setpublishid(r.getInt("PublisherId"));
         }
         return b;
     }
@@ -254,5 +293,18 @@ public class book {
          ResultSet r=db.executeQuery(sql);
          if(r.next())return r.getString(1);
          else return "分类";
+    }
+    public ResultSet getcom(int id)
+    {
+        String sql = "select * from BookComment where BookId ="+id;
+        DbCon db = new DbCon();
+        ResultSet r = db.executeQuery(sql);
+        return r;
+    }
+    public ResultSet searchbook(String s)
+    {
+        String sql = "select * from Books where Title like '%"+s+"%'";
+        DbCon db = new DbCon();
+        return db.executeQuery(sql);
     }
 }
