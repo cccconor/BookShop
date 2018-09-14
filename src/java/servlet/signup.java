@@ -80,6 +80,7 @@ public class signup extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
         String name = request.getParameter("Name");
@@ -89,6 +90,7 @@ public class signup extends HttpServlet {
         String addr = request.getParameter("addr");
         user u = new user();
         //mailserv m = new mailserv();
+        System.out.println(addr);
         u.setName(name);
         u.setPsd(psd);
         u.setEmail(email);

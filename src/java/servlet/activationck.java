@@ -67,6 +67,7 @@ public class activationck extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
         HttpSession session = request.getSession();
         String psd = request.getParameter("psd");

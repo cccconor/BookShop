@@ -31,7 +31,7 @@ public class DbCon {
 	{
                 try{
                         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3";
+                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3;useUnicode=true;characterEncoding=utf8";
                          conn = DriverManager.getConnection(url, "sa", "sms");
                          stmt=conn.createStatement(); 
                 }catch (Exception e){
@@ -90,6 +90,7 @@ public class DbCon {
         
         public int adduser(user u) throws SQLException
         {
+            System.out.println(u.getAddr());
             sql = "insert into Users values(?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, u.getName());
