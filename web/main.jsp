@@ -72,15 +72,15 @@
 	<div class="header">
 		<div class="headertop_desc">
 			<div class="call">
-				 <p>当前登陆用户为<%=user%>该用户的昵称为<%=uid%></p>
+                            <p>当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=user%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=uid%></a></p>
 			</div>
 			<div class="account_desc">
 				<ul>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Delivery</a></li>
-					<li><a href="#">Checkout</a></li>
-					<li><a href="#">My Account</a></li>
+                                                                                                <li><a href="main.jsp">主页</a></li>
+					<li><a href="login.jsp">注册</a></li>
+					<li><a href="login.jsp">登陆</a></li>
+					<li><a href="cart.jsp">购物车</a></li>
+					<li><a href="repsd.jsp">用户信息</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -127,10 +127,11 @@
   </div>
 	<div class="header_bottom">
 	     	<div class="menu">
+                                                             
 	     		<ul>
-			    	<li class="active"><a href="index.html">Home</a></li>
-			    	<li><a href="about.html">About</a></li>
-			    	<li><a href="delivery.html">Delivery</a></li>
+			    	<li class="active"><a href="main.jsp">主页</a></li>
+			    	<li><a href="cart.jsp">购物车</a></li>
+			    	<li><a href="repsd.jsp">用户信息</a></li>
 			    	<li><a href="news.html">News</a></li>
 			    	<li><a href="contact.html">Contact</a></li>
 			    	<div class="clear"></div>

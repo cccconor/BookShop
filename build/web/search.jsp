@@ -29,11 +29,11 @@
 			</div>
 			<div class="account_desc">
 				<ul>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Delivery</a></li>
-					<li><a href="#">Checkout</a></li>
-					<li><a href="#">My Account</a></li>
+					<li><a href="main.jsp">主页</a></li>
+					<li><a href="login.jsp">注册</a></li>
+					<li><a href="login.jsp">登陆</a></li>
+					<li><a href="cart.jsp">购物车</a></li>
+					<li><a href="repsd.jsp">用户信息</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>

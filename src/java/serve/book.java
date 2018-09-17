@@ -251,7 +251,7 @@ public class book {
         book b = new book();
         if(r.next())
         {
-            //b.setisbn(r.getString("ISBN"));
+            b.setid(r.getInt("Id"));
             b.settitle(r.getString("Title"));
             b.setauthor(r.getString("Author"));
             b.setpublishdate((String)r.getString("PublishDate"));
@@ -307,4 +307,5 @@ public class book {
         DbCon db = new DbCon();
         return db.executeQuery(sql);
     }
+    
 }

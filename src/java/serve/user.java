@@ -97,7 +97,7 @@ public class user {
     }
     public int getid()
     {
-        return this.id;
+        return id;
     }
     
     public int adduser(user u) throws SQLException{
@@ -119,7 +119,7 @@ public class user {
             u.setPsd(r.getString("LoginPwd"));
             u.setPhone(r.getString("Phone"));
             u.setEmail(r.getString("Mail"));
-            u.setstate(r.getInt("Id"));
+            u.setid(r.getInt("Id"));
             u.setstate(r.getInt("UserStateId"));
             u.setaddr(r.getString("Address"));
             u.setloginid(r.getString("LoginId"));

@@ -98,7 +98,7 @@ public class reinfo extends HttpServlet {
                 {
                     
                     out.println("<script language ='javaScript'>alert('密码修改成功！');</script>");
-                     response.setHeader("refresh", "0;url=repsd.jsp");
+                     response.setHeader("refresh", "0;url=main.jsp");
                 }else {
                     out.println("<script language ='javaScript'>alert('密码修改失败，请重试！');</script>");
                      response.setHeader("refresh", "0;url=repsd.jsp");
@@ -129,7 +129,7 @@ public class reinfo extends HttpServlet {
                     session.removeAttribute("uid");
                     session.setAttribute("uid",u.getloginid() );
                     out.println("<script language ='javaScript'>alert('用户信息修改成功！');</script>");
-                     response.setHeader("refresh", "0;url=repsd.jsp");
+                     response.setHeader("refresh", "0;url=main.jsp");
                 }else {
                     out.println("<script language ='javaScript'>alert('用户信息修改失败，请重试！');</script>");
                      response.setHeader("refresh", "0;url=repsd.jsp");

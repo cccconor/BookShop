@@ -4,6 +4,7 @@
     Author     : ZJX
 --%>
 
+<%@page import="serve.user"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import="serve.book"%>
 <!DOCTYPE HTML>
@@ -38,6 +39,9 @@
     <%
     String user = (String)session.getAttribute("user");
     String uid = (String)session.getAttribute("uid");
+    user u = new user();
+    u = u.getallinfo(user);
+    int k = u.getid();
     book b = new book();
     int i = Integer.valueOf(request.getParameter("id")).intValue();
     b = b.getbookbyid(i);
@@ -46,15 +50,15 @@
 	<div class="header">
 		<div class="headertop_desc">
 			<div class="call">
-				 <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></span></p>
+				 <p>当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=user%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=uid%></a></p>
 			</div>
 			<div class="account_desc">
 				<ul>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Delivery</a></li>
-					<li><a href="#">Checkout</a></li>
-					<li><a href="#">My Account</a></li>
+					<li><a href="main.jsp">主页</a></li>
+					<li><a href="login.jsp">注册</a></li>
+					<li><a href="login.jsp">登陆</a></li>
+					<li><a href="cart.jsp">购物车</a></li>
+					<li><a href="repsd.jsp">用户信息</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -102,9 +106,9 @@
 	<div class="header_bottom">
 	     	<div class="menu">
 	     		<ul>
-			    	<li><a href="index.html">Home</a></li>
-			    	<li><a href="about.html">About</a></li>
-			    	<li><a href="delivery.html">Delivery</a></li>
+			    	<li><a href="main.jsp">主页</a></li>
+			    	<li><a href="cart.jsp">购物车</a></li>
+			    	<li><a href="repsd.jsp">用户信息</a></li>
 			    	<li><a href="news.html">News</a></li>
 			    	<li><a href="contact.html">Contact</a></li>
 			    	<div class="clear"></div>
@@ -200,7 +204,7 @@
 					    	<li><a href="#"><img src="images/twitter.png" alt="" /></a></li>					    
 			    		</ul>
 					</div>
-					<div class="button"><span><a href="#">Add to Cart</a></span></div>					
+                                    <div class="button"><span><a href="cartop?ope=add&uid=<%=k%>&bid=<%=i%>&page=b.jsp">加入购物车</a></span></div>					
 					<div class="clear"></div>
 				</div>
 				 <div class="wish-list">

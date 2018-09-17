@@ -4,6 +4,7 @@
     Author     : ZJX
 --%>
 
+<%@page import="serve.cart"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="serve.book"%>
 <%@page import="serve.user"%>
@@ -51,8 +52,8 @@
 				function setTotal() {
 					var s = 0;
 					$("#tab td").each(function() {
-						var t = $(this).find('input[class*=text_box]').val();
-						var p = $(this).find('span[class*=price]').text();
+						var t = $(this).getElementById("shuliang").val();
+						var p = $(this).getElementById("danjia").text();
 						if(parseInt(t)==""||undefined||null || isNaN(t) || isNaN(parseInt(t))){
 							t=0;
 						}
@@ -75,19 +76,41 @@
 		</style>
 </head>
 <body>
+    <%
+                      String name = (String)session.getAttribute("user");
+                      String unc = (String)session.getAttribute("uid");
+                      user u = new user();
+                      book b = new book();
+                      u=u.getallinfo(name);
+                      ResultSet r = u.getcart(u.getid());
+                      cart c = new cart();
+//                      while(r.next())
+//                      {
+//                          out.print("<p>");
+//                          b = b.getbookbyid(r.getInt("BookId"));
+//                          out.print(b.gettitle());
+//                          out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+//                          out.print("价格："+b.getprice());
+//                          out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+//                          out.print("数量："+r.getInt("Count"));
+//                          out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+//                          out.print("总计："+(b.getprice()*r.getInt("Count")));
+//                          out.print("</p>");
+//                      }
+                      %>
   <div class="wrap">
 	<div class="header">
 		<div class="headertop_desc">
 			<div class="call">
-				 <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></span></p>
+				 <p>当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=name%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=unc%></a></p>
 			</div>
 			<div class="account_desc">
 				<ul>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Delivery</a></li>
-					<li><a href="#">Checkout</a></li>
-					<li><a href="#">My Account</a></li>
+					<li><a href="main.jsp">主页</a></li>
+					<li><a href="login.jsp">注册</a></li>
+					<li><a href="login.jsp">登陆</a></li>
+					<li><a href="cart.jsp">购物车</a></li>
+					<li><a href="repsd.jsp">用户信息</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -143,24 +166,7 @@
     		<div class="clear"></div>
     	</div>
 	      <div class="section group">
-                  <%
-                      user u = new user();
-                      book b = new book();
-                      ResultSet r = u.getcart(250);
-//                      while(r.next())
-//                      {
-//                          out.print("<p>");
-//                          b = b.getbookbyid(r.getInt("BookId"));
-//                          out.print(b.gettitle());
-//                          out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-//                          out.print("价格："+b.getprice());
-//                          out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-//                          out.print("数量："+r.getInt("Count"));
-//                          out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-//                          out.print("总计："+(b.getprice()*r.getInt("Count")));
-//                          out.print("</p>");
-//                      }
-                      %>
+                  
                   <div>
                       
                       
@@ -169,6 +175,8 @@
                               while(r.next())
                               {
                                   b = b.getbookbyid(r.getInt("BookId"));
+                                  int  bid=b.getid();
+                                  int uid=u.getid();
                               
                               %>
 			<tr>
@@ -176,12 +184,12 @@
                                                                                                 <span><%=b.gettitle()%></span>
                                                                             </td>
                                                                             <td>
-					<span>单价:</span><span class="price"><%=b.getprice() %></span>
+                                                                                <span>单价:</span><span class="price" id="danjia"><%=b.getprice() %></span>
                                                                             </td>
                                                                             <td>
-					<input class="min" name="" type="button" value="-" />
-                                        <input class="text_box" name="" type="number" value="<%=r.getInt("Count") %>" placeholder="0"/>
-					<input class="add" name="" type="button" value="+" />
+					<input class="min" name="" type="button" value="-"onclick="location.href='cartop?uid=<%=uid%>&bid=<%=bid%>&ope=cut&page=cart.jsp'" />
+                                        <input class="text_box" id="shuliang" name="" type="number" value="<%=r.getInt("Count") %>" placeholder="0"/>
+                                        <input class="add" name="" type="button" value="+" onclick="location.href='cartop?uid=<%=uid%>&bid=<%=bid%>&ope=add&page=cart.jsp'" />
 				</td>
 			</tr>
                         <%} %>
@@ -194,7 +202,12 @@
 				</td>
 			</tr>-->
 		</table>
-<p>总价：<label id="total"></label></p>
+                        <p>总价：<label id="total"><%=c.gettotal(u.getid()) %></label></p>
+                        
+                        <br><br>
+                        <a href="#"><button>提交订单</button></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="cartop?uid=<%=u.getid()%>&ope=clean&bid=0" float="right"><button>清空购物车</button></a>
                 
                       
                       
@@ -202,6 +215,7 @@
                       
                       
                   </div>
+                        <br><br><br><br><br><br><br><br><br><br>
 				<div class="grid_1_of_4 images_1_of_4">
 					 <a href="preview.html"><img src="images/feature-pic1.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
