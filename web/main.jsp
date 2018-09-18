@@ -4,6 +4,8 @@
     Author     : ZJX
 --%>
 
+<%@page import="serve.cart"%>
+<%@page import="serve.user"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="serve.book"%>
 <%@page import="serve.pageserv"%>
@@ -51,11 +53,22 @@
                                         }
 	</style>
 </head>
-<body>
+<body onload="fun()">
     <%
            String user = (String)session.getAttribute("user");
            String uid = (String)session.getAttribute("uid");
            String apage =  request.getParameter("curpage");
+           int items = 0;
+           int total = 0;
+           if(user!=null)
+           {
+               user u = new user();
+                cart c = new cart();
+                u = u.getallinfo(user);
+                 items=c.getcon(u.getid());
+                 total = c.gettotal(u.getid());
+           }
+           
            int curpage = 0;
            if(apage==null)
            {
@@ -66,33 +79,46 @@
            
            %>
     
-    
+           <script>
+               function fun()
+               {
+                   var usid = <%=user%>;
+//                   alert(usid);
+                   var str1 = "未登录，请<a href='login.html'>登陆</a>";
+                  
+                   if(usid==null||usid==NaN){
+                       
+                       document.getElementById("yonghu").innerHTML=str1;
+                   }
+               }
+           </script>
     
   <div class="wrap">
 	<div class="header">
 		<div class="headertop_desc">
-			<div class="call">
-                            <p>当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=user%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=uid%></a></p>
+                    <div class="call" id="top">
+                            <p id="yonghu">当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#" id="ueid"><%=user%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=uid%></a></p>
 			</div>
 			<div class="account_desc">
 				<ul>
                                                                                                 <li><a href="main.jsp">主页</a></li>
-					<li><a href="login.jsp">注册</a></li>
-					<li><a href="login.jsp">登陆</a></li>
+					<li><a href="login.html">注册</a></li>
+					<li><a href="login.html">登陆</a></li>
 					<li><a href="cart.jsp">购物车</a></li>
 					<li><a href="repsd.jsp">用户信息</a></li>
+                                                                                                <li><a href="logout">注销登陆</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="header_top">
 			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
+                            <a href="main.jsp"><img src="images/logo.png" alt=""  /></a>
 			</div>
 			  <div class="cart">
-			  	   <p>Welcome to our Online Store! <span>Cart:</span><div id="dd" class="wrapper-dropdown-2"> 0 item(s) - $0.00
+                              <p>Welcome to our Online Store! <span>Cart:</span><div id="dd" class="wrapper-dropdown-2"> <%=items%> item(s) - <%=total%>元
 			  	   	<ul class="dropdown">
-							<li>you have no items in your Shopping cart</li>
+                                            <li><a href="cart.jsp">查看详情</a></li>
 					</ul></div></p>
 			  </div>
 			  <script type="text/javascript">
@@ -242,14 +268,14 @@
     	</div>
 			<div class="section group">
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview.html"><img src="images/new-pic1.jpg" alt="" /></a>					
+					 <a href="#"><img src="images/new-pic1.jpg" alt="" /></a>					
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
 							<p><span class="rupees">$849.99</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">Add to Cart</a></h4>
+									<h4><a href="#">Add to Cart</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>

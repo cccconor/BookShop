@@ -4,6 +4,7 @@
     Author     : ZJX
 --%>
 
+<%@page import="serve.cart"%>
 <%@page import="serve.user"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import="serve.book"%>
@@ -35,42 +36,68 @@
 		});
 	</script>
 </head>
-<body>
+<body onload="fun()">
     <%
     String user = (String)session.getAttribute("user");
     String uid = (String)session.getAttribute("uid");
-    user u = new user();
+    int k=0;
+    int total = 0;
+    int items=0;
+    if(user!=null)
+    {
+        user u = new user();
     u = u.getallinfo(user);
-    int k = u.getid();
+     k = u.getid();
+     cart c=new cart();
+     total = c.gettotal(k);
+     items = c.getcon(k);
+     
+    }
+    
     book b = new book();
     int i = Integer.valueOf(request.getParameter("id")).intValue();
     b = b.getbookbyid(i);
     %>
+    <script>
+               function fun()
+               {
+                   var usid = <%=user%>;
+                   
+                   var str1 = "未登录，请<a href='login.html'>登陆</a>";
+                   
+                   if(usid==null||usid==NaN){
+                       
+                       document.getElementById("yonghu").innerHTML=str1;
+                       document.getElementById("gwc").href="#";
+                   }
+               }
+           </script>
   <div class="wrap">
 	<div class="header">
 		<div class="headertop_desc">
 			<div class="call">
-				 <p>当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=user%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=uid%></a></p>
+				 <p id="yonghu">当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=user%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=uid%></a></p>
 			</div>
 			<div class="account_desc">
 				<ul>
 					<li><a href="main.jsp">主页</a></li>
-					<li><a href="login.jsp">注册</a></li>
-					<li><a href="login.jsp">登陆</a></li>
+					<li><a href="login.html">注册</a></li>
+					<li><a href="login.html">登陆</a></li>
 					<li><a href="cart.jsp">购物车</a></li>
 					<li><a href="repsd.jsp">用户信息</a></li>
+                                                                                                <li><a href="logout">注销登陆</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="header_top">
 			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
+				<a href="main.jsp"><img src="images/logo.png" alt="" /></a>
 			</div>
 			  <div class="cart">
-			  	   <p>Welcome to our Online Store! <span>Cart:</span><div id="dd" class="wrapper-dropdown-2"> 0 item(s) - $0.00
+			  	   <p>Welcome to our Online Store! <span>Cart:</span><div id="dd" class="wrapper-dropdown-2"> <%=items%> item(s) - <%=total%>元
 			  	   	<ul class="dropdown">
-							<li>you have no items in your Shopping cart</li>
+							<li><a href="cart.jsp">查看详情</a></li>
 					</ul></div></p>
 			  </div>
 			  <script type="text/javascript">
@@ -129,7 +156,7 @@
     <div class="content">
     	<div class="content_top">
     		<div class="back-links">
-    		<p><a href="index.html">Home</a> >>>> <a href="#">Electronics</a></p>
+    		<p><a href="main.jsp">Home</a> >>>> <a href="#">Electronics</a></p>
     	    </div>
     		<div class="clear"></div>
     	</div>
@@ -204,7 +231,7 @@
 					    	<li><a href="#"><img src="images/twitter.png" alt="" /></a></li>					    
 			    		</ul>
 					</div>
-                                    <div class="button"><span><a href="cartop?ope=add&uid=<%=k%>&bid=<%=i%>&page=b.jsp">加入购物车</a></span></div>					
+                                    <div class="button"><span><a id="gwc" href="cartop?ope=add&uid=<%=k%>&bid=<%=i%>&page=b.jsp">加入购物车</a></span></div>					
 					<div class="clear"></div>
 				</div>
 				 <div class="wish-list">
@@ -245,12 +272,7 @@
                                                                              </div>	
 
 				<div class="review">
-                                    <%
-                                        ResultSet rr = b.getcom(b.getid());
-                                        while(rr.next()){
-                                            out.print("<p>"+rr.getString("Msg")+"&nbsp;&nbsp;&nbsp;&nbsp;"+rr.getString("CreateDateTime"));
-                                        }
-                                        %>
+                                    
 <!--					<h4>Lorem ipsum Review by <a href="#">Finibus Bonorum</a></h4>
 					 <ul>
 					 	<li>Price :<a href="#"><img src="images/price-rating.png" alt="" /></a></li>
@@ -263,17 +285,26 @@
                                          <div class="your-review">
 				  	 <h3>How Do You Rate This Product?</h3>
 				  	  <p>Write Your Own Review?</p>
-				  	  <form>
+                                          <form action="review" method="post">
 					    	<div>
 						    	<span><label>Nickname<span class="red">*</span></label></span>
 						    	<span><input type="text" value=""></span>
+                                                                                                                                        <span><input type="hidden" name="bid" value="<%=i%>"></span>
 						    </div>
-						    <div><span><label>Summary of Your Review<span class="red">*</span></label></span>
-						    	<span><input type="text" value=""></span>
+						    <div><span><label>input of Your Review<span class="red">*</span></label></span>
+                                                                                                                                        <span><input type="text" name="text" value="" ></span>
+                                                                                                                                        <span><input type="hidden" name="uid" value="<%=k%>" ></span>
 						    </div>						
 						    <div>
 						    	<span><label>Review<span class="red">*</span></label></span>
-						    	<span><textarea> </textarea></span>
+						    	<span><textarea width="500px"> 
+                                                            <%
+                                        ResultSet rr = b.getcom(b.getid());
+                                        while(rr.next()){
+                                            out.print(rr.getString("Msg")+"                         "+rr.getString("CreateDateTime")+"\n");
+                                        }
+                                        %>
+                                                            </textarea></span>
 						    </div>
 						   <div>
 						   		<span><input type="submit" value="SUBMIT REVIEW"></span>
@@ -459,7 +490,7 @@
 			</div>			
         </div>
         <div class="copy_right">
-				<p>Copyright &copy; 2014.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+				
 		   </div>
     </div>
    <script type="text/javascript">

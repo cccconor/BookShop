@@ -123,6 +123,14 @@ public class cart {
         int i = db.executeupdate(sql);
         return i!=0;
     }
+    
+    public int getcon(int uid) throws SQLException
+    {
+        sql = "select count(*) from Cart where UserId="+uid;
+        ResultSet i=db.executeQuery(sql);
+        i.next();
+        return i.getInt(1);
+    }
         
     
 }

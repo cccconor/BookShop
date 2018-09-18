@@ -308,4 +308,11 @@ public class book {
         return db.executeQuery(sql);
     }
     
+    public boolean addcomment(int bid,String text) throws SQLException
+    {
+        String sql = "insert into BookComment values('"+text+"',getdate(),"+bid+")";
+        DbCon db = new DbCon();
+        return db.executeupdate(sql)!=0;
+    }
+    
 }

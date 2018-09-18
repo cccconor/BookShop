@@ -826,8 +826,10 @@ body {
 			-webkit-appearance:none;
 }
 .your-review textarea{
+                                       height: 500px;
+                                       width: 90%;
 		resize:none;
-		height:120px;		
+				
 }
 .your-review input[type="submit"]{
     font-size:1em;

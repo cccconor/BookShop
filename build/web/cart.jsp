@@ -75,7 +75,7 @@
 		}
 		</style>
 </head>
-<body>
+<body onload="fun()">
     <%
                       String name = (String)session.getAttribute("user");
                       String unc = (String)session.getAttribute("uid");
@@ -98,11 +98,27 @@
 //                          out.print("</p>");
 //                      }
                       %>
+                      
+                      <script>
+               function fun()
+               {
+                   var usid = <%=name%>;
+                   
+                   var str1 = "未登录，请<a href='login.html'>登陆</a>";
+                   
+                   if(usid==null||usid==NaN){
+                       alert("未登录，请登陆后再操作！！！");
+                       document.getElementById("yonghu").innerHTML=str1;
+                       window.location.href = "login.html";
+//                       document.getElementById("gwc").href="#";
+                   }
+               }
+           </script>
   <div class="wrap">
 	<div class="header">
 		<div class="headertop_desc">
 			<div class="call">
-				 <p>当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=name%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=unc%></a></p>
+                            <p id="yonghu">当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=name%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=unc%></a></p>
 			</div>
 			<div class="account_desc">
 				<ul>
@@ -117,7 +133,7 @@
 		</div>
 		<div class="header_top">
 			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
+				<a href="main.jsp"><img src="images/logo.png" alt="" /></a>
 			</div>
 			  
 			  <script type="text/javascript">
@@ -217,7 +233,7 @@
                   </div>
                         <br><br><br><br><br><br><br><br><br><br>
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview.html"><img src="images/feature-pic1.jpg" alt="" /></a>
+					 <a href="#"><img src="images/feature-pic1.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -231,7 +247,7 @@
 					 
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="images/feature-pic2.jpg" alt="" /></a>
+					<a href="#"><img src="images/feature-pic2.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -245,27 +261,27 @@
 				    
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="images/feature-pic3.jpg" alt="" /></a>
+					<a href="#"><img src="images/feature-pic3.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					 <div class="price-details">
 				       <div class="price-number">
 							<p><span class="rupees">$599.00</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">Add to Cart</a></h4>
+									<h4><a href="#">Add to Cart</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="images/feature-pic4.jpg" alt="" /></a>
+					<a href="#"><img src="images/feature-pic4.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
 							<p><span class="rupees">$679.87</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">Add to Cart</a></h4>
+									<h4><a href="#">Add to Cart</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>				     
@@ -282,53 +298,53 @@
     	</div>
 			<div class="section group">
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview.html"><img src="images/new-pic1.jpg" alt="" /></a>					
+					 <a href="#"><img src="images/new-pic1.jpg" alt="" /></a>					
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
 							<p><span class="rupees">$849.99</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">Add to Cart</a></h4>
+									<h4><a href="#">Add to Cart</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="images/new-pic2.jpg" alt="" /></a>
+					<a href="#"><img src="images/new-pic2.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					 <div class="price-details">
 				       <div class="price-number">
 							<p><span class="rupees">$599.99</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">Add to Cart</a></h4>
+									<h4><a href="#">Add to Cart</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="images/new-pic4.jpg" alt="" /></a>
+					<a href="#"><img src="images/new-pic4.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
 							<p><span class="rupees">$799.99</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">Add to Cart</a></h4>
+									<h4><a href="#">Add to Cart</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-				 <a href="preview.html"><img src="images/new-pic3.jpg" alt="" /></a>
+				 <a href="#"><img src="images/new-pic3.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>					 
 					 <div class="price-details">
 				       <div class="price-number">
 							<p><span class="rupees">$899.99</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">Add to Cart</a></h4>
+									<h4><a href="#">Add to Cart</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>
@@ -364,7 +380,7 @@
 					<h4>My account</h4>
 						<ul>
 							<li><a href="contact.html">Sign In</a></li>
-							<li><a href="index.html">View Cart</a></li>
+							<li><a href="#">View Cart</a></li>
 							<li><a href="#">My Wishlist</a></li>
 							<li><a href="#">Track My Order</a></li>
 							<li><a href="contact.html">Help</a></li>
@@ -391,7 +407,7 @@
 			</div>			
         </div>
         <div class="copy_right">
-				<p>Copyright &copy; 2014.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+				<p></p>
 		   </div>
     </div>
     <script type="text/javascript">
