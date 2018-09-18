@@ -25,11 +25,18 @@
 		.mytable{
 /*                                                          width: 800px;*/
                                                          background-color:#E6E6F2;
+/*                                                         whidth:400px;
+                                                         height: 600px;*/
+                                                         table-layout: fixed;
+                                                         overflow: hidden;
 /*                                                         border-collapse:collapse;
 			table-layout: fixed;只有定义表格的算法为fixed,th才有效果
 			border-collapse: collapse;边框合并模式*/
 		}
 		.tablea{
+                     white-space: nowrap;
+/*                               height: 240px;
+                                width: 336px;*/
 /*                                                        border-bottom:1px solid #000;*/
 /*                                                          width:50%;
 			overflow:hidden;超出的文字隐藏
@@ -39,6 +46,10 @@
 			
 			
 		}
+                .bookimg{
+/*                    height: 200px;
+                    width: 100px;*/
+                }
                                         .pink{
                                             background-color:#FF79BC;
                                         }
@@ -218,7 +229,7 @@
                     //out.print("<td>"+re.getString(1)+re.getString(2)+re.getString(3)+re.getString(5)+re.getString(6)+re.getString(7)+"</td>");
              //   out.print("<tr><td>");
                  s=re.getString(1);
-                 out.print("<tr class='tablea'><td><a href='bookdetails.jsp?id="+s+"'>查看详情</a></td>");
+                 out.print("<tr ><td align= 'center' class='tablea'><a href='bookdetails.jsp?id="+s+"'><img class='bookimg' src='upload/"+re.getString("ISBN") +".jpg' alt=' ' /></a></td>");
                  //out.print("<td>"+re.getString(1)+"</td>");
                  out.print("<td>"+re.getString(2)+"</td>");
                  out.print("<td>"+re.getString(3)+"</td>");
@@ -227,7 +238,7 @@
                  out.print("<td class='red'>"+re.getString(6)+"</td>");
                  out.print("<td class='blue'>"+re.getString(7)+"</td>");
                  out.print("<td class = 'green'>"+re.getString(8)+"</td>");
-                 out.print("<td>"+re.getString(9)+"</td>");
+                 out.print("<td></td>");
                  out.print("</tr>");
                 }
                 %>

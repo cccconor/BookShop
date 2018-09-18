@@ -1,3 +1,4 @@
+<%@page import="serve.user"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="serve.book"%>
 <%@page import="java.sql.ResultSet"%>
@@ -14,11 +15,18 @@
 <script type="text/javascript" src="js/easing.js"></script>
 </head>
 <body>
+    <%
+                      String name = (String)session.getAttribute("user");
+                      String unc = (String)session.getAttribute("uid");
+                      
+                      
+
+                      %>
   <div class="wrap">
 	<div class="header">
 		<div class="headertop_desc">
 			<div class="call">
-				 <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></span></p>
+				 <p id="yonghu">当前登陆用户为&nbsp;&nbsp;&nbsp;<a href="#"><%=name%></a>&nbsp;&nbsp;&nbsp;该用户的昵称为&nbsp;&nbsp;&nbsp;<a href="#"><%=unc%></a></p>
 			</div>
 			<div class="account_desc">
 				<ul>
@@ -34,7 +42,7 @@
 		</div>
 		<div class="header_top">
 			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
+				<a href="main.jsp"><img src="images/logo.png" alt="" /></a>
 			</div>
 			  <div class="cart">
 			  	   <p></p>

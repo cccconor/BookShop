@@ -168,20 +168,20 @@
 						   <div id="products_example">
 							   <div id="products">
 								<div class="slides_container">
-									<a href="#" target="_blank"><img src="images/productslide-1.jpg" alt=" " /></a>
-									<a href="#" target="_blank"><img src="images/productslide-2.jpg" alt=" " /></a>
-									<a href="#" target="_blank"><img src="images/productslide-3.jpg" alt=" " /></a>					
-									<a href="#" target="_blank"><img src="images/productslide-4.jpg" alt=" " /></a>
-									<a href="#" target="_blank"><img src="images/productslide-5.jpg" alt=" " /></a>
-									<a href="#" target="_blank"><img src="images/productslide-6.jpg" alt=" " /></a>
+									<a href="#" target="_blank"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a>
+									<a href="#" target="_blank"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a>
+									<a href="#" target="_blank"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a>					
+									<a href="#" target="_blank"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a>
+									<a href="#" target="_blank"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a>
+									<a href="#" target="_blank"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a>
 								</div>
 								<ul class="pagination">
-									<li><a href="#"><img src="images/thumbnailslide-1.jpg" alt=" " /></a></li>
-									<li><a href="#"><img src="images/thumbnailslide-1.jpg" alt=" " /></a></li>
-									<li><a href="#"><img src="images/thumbnailslide-1.jpg" alt=" " /></a></li>
-									<li><a href="#"><img src="images/thumbnailslide-1.jpg" alt=" " /></a></li>
-									<li><a href="#"><img src="images/thumbnailslide-1.jpg" alt=" " /></a></li>
-									<li><a href="#"><img src="images/thumbnailslide-1.jpg" alt=" " /></a></li>
+									<li><a href="#"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a></li>
+									<li><a href="#"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a></li>
+									<li><a href="#"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a></li>
+									<li><a href="#"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a></li>
+									<li><a href="#"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a></li>
+									<li><a href="#"><img src="upload/<%=b.getisbn() %>.jpg" alt=" " /></a></li>
 								</ul>
 							</div>
 						</div>

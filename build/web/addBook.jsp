@@ -33,7 +33,10 @@
     .yar{
         height: 40px;
     }
-    
+    form{
+       border: 1px solid #dedede;
+        border-radius: 10px;
+    }
      .butt{
                  margin-top:15px;
                 background:#15B69A;
@@ -54,7 +57,7 @@
    
     %>
     <form method="post" action="fin_addBook">
-    <table  align="left">
+        <table  width="700px" align="center">
         <caption><b>添加图书信息</b></caption>
             <tr>
                 <td width="50%" class="yar"  align="right">
@@ -125,27 +128,21 @@
                 <td   class="sar" valign="top" align="right">内容简介：
                 </td>
                 <td>
-                    <textarea  name="con_des" rows="10" cols="50" >
-                    内容简介
-                     </textarea>
+                    <textarea  name="con_des" rows="10" cols="50" >内容简介</textarea>
                 </td>
             </tr>
             <tr>
                 <td class="sar" valign="top" align="right">作者简介：
                 </td>
                 <td>
-                   <textarea  name="au_des" rows="10" cols="50">
-                   作者简介
-                     </textarea>
+                   <textarea  name="au_des" rows="10" cols="50">简介</textarea>
                 </td>
             </tr>
             <tr>
                 <td class="sar" valign="top" align="right">评论：
                 </td>
                 <td>
-                   <textarea  name="comment" rows="10" cols="50">
-                   评论
-                     </textarea>
+                   <textarea  name="comment" rows="10" cols="50">评论</textarea>
                 </td>
             </tr>
             <tr>
@@ -153,9 +150,7 @@
                     目录：
                 </td>
                 <td>
-            <textarea id="editor" name="toc" type="text/plain" style="width: 500px ; height: 500px">
-   请添加目录
- </textarea>
+            <textarea id="editor" name="toc" type="text/plain" style="width: 500px ; height: 500px"> 请添加目录</textarea>
                 </td>
             </tr>
              <tr>
