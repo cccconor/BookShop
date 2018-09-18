@@ -7,7 +7,9 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,16 +17,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import serve.book;
 import serve.cart;
-import serve.user;
 
 /**
  *
  * @author ZJX
  */
-@WebServlet(name = "cartop", urlPatterns = {"/cartop"})
-public class cartop extends HttpServlet {
+@WebServlet(name = "dingdan", urlPatterns = {"/dingdan"})
+public class dingdan extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,17 +38,16 @@ public class cartop extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet cartop</title>");            
+            out.println("<title>Servlet dingdan</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet cartop at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet dingdan at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,46 +65,7 @@ public class cartop extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            String user = (String)session.getAttribute("user");
-//            user u = new user();
-//            String uid = (String)session.getAttribute("uid");
-            int uid = Integer.valueOf(request.getParameter("uid"));
-            int bid = Integer.valueOf(request.getParameter("bid"));
-            String op = (String) request.getParameter("ope");
-            String page =(String) request.getParameter("page");
-            cart c = new cart();
-            if(op.equals("add"))
-            {
-                c.addtocart(uid, bid);
-                if(page.equals("b.jsp")){
-                    response.setHeader("refresh", "0;url=bookdetails.jsp?id="+bid);
-                }else
-                response.setHeader("refresh", "0;url=cart.jsp");
-            }else if(op.equals("cut"))
-            {
-                c.cutone(uid, bid);
-                response.setHeader("refresh", "0;url=cart.jsp");
-            }else if(op.equals("clean"))
-            {
-                c.cleancart(uid);
-                 response.setHeader("refresh", "0;url=cart.jsp");
-            }else if(op.equals("shuru")){
-                int shu = Integer.valueOf(request.getParameter("sh"));
-                if(shu<0)shu=0;
-                c.shuru(uid, bid, shu);
-                response.setHeader("refresh", "0;url=cart.jsp");
-            }
-            
-//            String user =  (String)request.getParameter("user");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(cartop.class.getName()).log(Level.SEVERE, null, ex);
-        }
-//        processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -118,7 +79,45 @@ public class cartop extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            int uid = Integer.valueOf(request.getParameter("uid"));
+//            int bid = Integer.valueOf(request.getParameter("bid"));
+            int con = Integer.valueOf(request.getParameter("con"));
+            
+//　　     String da = f1.format(now);
+            
+            if(uid!=0)
+            {
+                double tp=0.0;
+                cart c = new cart();
+                java.util.Date now=new java.util.Date();
+                SimpleDateFormat f1 = new SimpleDateFormat("yyyyMMddkkmm");
+//　　     SimpleDateFormat f=newSimpleDateFormat("yyyMMddkkmm");
+                String da = f1.format(now);
+                da = da+uid;
+                c.dingdan4(da, uid, tp);
+                for(int i=0;i<con;i++)
+                {
+                    int bid = Integer.valueOf(request.getParameter("bid"+i));
+                    int shu = Integer.valueOf(request.getParameter("shuliang"+i));
+                    book b = new book();
+                    b = b.getbookbyid(bid);
+                    tp = tp+ b.getprice()*shu;
+                    
+                    c.dingdan(da, bid, shu,b.getprice(),uid);
+                }
+                    c.dingdan3(da, uid, tp);
+                    response.setHeader("refresh", "0;url=dingdan.jsp?uid="+uid+"&odid="+da);
+            }else response.setHeader("refresh", "0;url=cart.jsp");
+            
+            
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(dingdan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        processRequest(request, response);
     }
 
     /**

@@ -39,22 +39,28 @@
         </style>
          
         <% 
-            
-            ResultSet rs = book.showone(request.getParameter("id"));
+            String sq=request.getParameter("id");
+            ResultSet rs = book.showone(sq);
             rs.next();
         %>
-        <form method="post" action="modifyB.jsp">
+        <script type="text/javascript">
+            function upcover(){
+                window.open('upBookCover.jsp','newwindow', 'height=300, width=420, top=100px, left=500px, modal=yes,toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+            }
+        </script>
+        <form method="post" action="modifyB.jsp?id=<%=sq%>">
             
                 <center>
                 <input class="butt" type="submit" value="修改图书信息"/>
+                <input class="butt" type="button" value="添加封面" onclick="upcover()">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;
+                  
                 
                 </center>
             <br>
-        <table width="50%" align="center" border="1" rules="all">
+        <table width="700px" align="center" border="1" rules="all">
             <tr>
                 <td width="15%" class="yar" align="right">
                     图书名称： 

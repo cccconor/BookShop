@@ -131,6 +131,58 @@ public class cart {
         i.next();
         return i.getInt(1);
     }
-        
     
+    public boolean shuru(int uid,int bid,int shu) throws SQLException
+    {
+        if(shu==0){
+             sql = "delete from Cart where UserId="+uid+" and BookId="+bid;
+                    return db.executeupdate(sql)!=0;
+        }else{
+            sql = "update Cart set Count="+shu+" where UserId="+uid+" and BookId="+bid;
+            return db.executeupdate(sql)!=0;
+        }
+
+    }
+    
+    
+    
+    public boolean dingdan(String oid,int bid,int shu,double price,int uid) throws SQLException
+        {
+//            dingdan4(oid,uid,0.0);
+            sql = "insert into OrderBook values('"+oid+"',"+bid+","+shu+","+price+")";
+            System.out.println(sql);
+            return db.executeupdate(sql)!=0;
+        }
+      
+    
+      public boolean dingdan2(String od,int uid,String addr) throws SQLException
+      {
+          sql = "update Orders set addr="+addr+" where OrderId="+od+" and UserId="+uid;
+          System.out.println(sql);
+          return db.executeupdate(sql)!=0;
+      }
+    
+      public boolean dingdan3(String od,int uid,double totalprice) throws SQLException
+      {
+//          sql = "insert into Orders (OrderId,OrderDate,UserId,TotalPrice) values('"+od+"',getdate(),"+uid+","+totalprice+")";
+          sql = "update Orders set TotalPrice="+totalprice+" where OrderId='"+od+"' and UserId="+uid;
+          System.out.println(sql);
+          return db.executeupdate(sql)!=0;
+      }
+      
+      public boolean dingdan4(String od,int uid,double totalprice) throws SQLException
+      {
+          sql = "insert into Orders (OrderId,OrderDate,UserId,TotalPrice) values('"+od+"',getdate(),"+uid+","+totalprice+")";
+//          sql = "update Orders set TotalPrice="+totalprice+" where OrderId="+od+" and UserId="+uid;
+          System.out.println(sql);
+          return db.executeupdate(sql)!=0;
+      }
+      
+      public ResultSet getorder(String od)
+      {
+          sql = "select * from OrderBook where OrderId='"+od+"'";
+          return db.executeQuery(sql);
+      }
+      
+      
 }

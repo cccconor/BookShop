@@ -106,15 +106,14 @@ public class BookCon {
                 + "AurhorDescription=?,"
                 + "EditorComment=?,"
                 + "TOC=?,"
-                + "CategoryId=?,"
-                + "licks=?"
+                + "CategoryId=?"
+               
                 + " where id = "+b.getId();
         pstmt = conn.prepareStatement(s);
         pstmt.setString(1, b.getTitle());
         pstmt.setString(2, b.getAuthor());
         pstmt.setInt(3, b.getPublisherId());
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-       
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
         Date date = df.parse(b.getPublishdate());
         java.sql.Date publishdate = new java.sql.Date(date.getTime());
         pstmt.setDate(4, publishdate);
@@ -126,9 +125,9 @@ public class BookCon {
         pstmt.setString(10, b.getEditorcomment());
         pstmt.setString(11,b.getToc());
         pstmt.setInt(12,b.getCategoryId());
-        pstmt.setInt(13, b.getClicks());
-        int row = pstmt.executeUpdate();
-        
+       
+        int row = pstmt.executeUpdate();        
+       
         return row;
     }
 }
