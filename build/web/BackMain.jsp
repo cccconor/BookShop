@@ -15,18 +15,7 @@
          request.setCharacterEncoding("utf-8");%>
         <link rel="stylesheet" href="css/back.css" type="text/css"> 
         <script type="text/javascript" src="js/back.js"></script>
-        <style>
-            a.close-btn{
-                color: #fff;
-                font-size: 15px;
-            }
-            a.close-btn:hover{
-                color: #ff7300;
-            }
-            a.close-btn:active{
-                color: #7B7B7B;
-            }
-        </style>
+        
     </head>
     
     <body>
@@ -36,13 +25,12 @@
             <div class="yonghu">
                 <br>
              当前用户： 
-            <span style="color: #FFB6C1;font-size: 32px;">          
+            <span style="color: #0000FF;font-size: 32px;">          
             <%= request.getParameter("id")%>
+         
             </span>
-              <a href="BackLogin.jsp"  class="close-btn">[退出]</a>
-               
+                &nbsp; &nbsp; &nbsp; &nbsp; 
             </div>
-            
         </div>
         <div id="main">
             <div class="west">
