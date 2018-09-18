@@ -33,10 +33,7 @@
     .yar{
         height: 40px;
     }
-    form{
-       border: 1px solid #dedede;
-        border-radius: 10px;
-    }
+    
      .butt{
                  margin-top:15px;
                 background:#15B69A;
