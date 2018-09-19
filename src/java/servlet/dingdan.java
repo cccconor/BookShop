@@ -109,6 +109,7 @@ public class dingdan extends HttpServlet {
                     c.dingdan(da, bid, shu,b.getprice(),uid);
                 }
                     c.dingdan3(da, uid, tp);
+                    c.cleancart(uid);
                     response.setHeader("refresh", "0;url=dingdan.jsp?uid="+uid+"&odid="+da);
             }else response.setHeader("refresh", "0;url=cart.jsp");
             

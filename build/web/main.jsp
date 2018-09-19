@@ -229,16 +229,16 @@
                     //out.print("<td>"+re.getString(1)+re.getString(2)+re.getString(3)+re.getString(5)+re.getString(6)+re.getString(7)+"</td>");
              //   out.print("<tr><td>");
                  s=re.getString(1);
-                 out.print("<tr ><td align= 'center' class='tablea'><a href='bookdetails.jsp?id="+s+"'><img class='bookimg' src='upload/"+re.getString("ISBN") +".jpg' alt=' ' /></a></td>");
+                 out.print("<tr ><td align= 'center' class='tablea'><a href='bookdetails.jsp?id="+s+"'><img class='bookimg' src='images/BookCovers/"+re.getString("ISBN") +".jpg' alt=' ' /></a></td>");
                  //out.print("<td>"+re.getString(1)+"</td>");
-                 out.print("<td>"+re.getString(2)+"</td>");
-                 out.print("<td>"+re.getString(3)+"</td>");
-                 out.print("<td>"+b.getpublish(re.getInt(4))+"</td>");
-                 out.print("<td class='pink'>"+re.getString(5)+"</td>");
-                 out.print("<td class='red'>"+re.getString(6)+"</td>");
-                 out.print("<td class='blue'>"+re.getString(7)+"</td>");
-                 out.print("<td class = 'green'>"+re.getString(8)+"</td>");
-                 out.print("<td></td>");
+                 out.print("<td valign='center'>"+re.getString(2)+"</td>");
+                 out.print("<td valign='center'>"+re.getString(3)+"</td>");
+                 out.print("<td valign='center'>"+b.getpublish(re.getInt(4))+"</td>");
+                 out.print("<td valign='center' class='pink'>"+re.getString(5)+"</td>");
+                 out.print("<td valign='center' class='red'>"+re.getString(6)+"</td>");
+                 out.print("<td valign='center' class='blue'>"+re.getString(7)+"</td>");
+                 out.print("<td valign='center' class = 'green'>"+re.getString(8)+"</td>");
+                 out.print("<td valign='center'></td>");
                  out.print("</tr>");
                 }
                 %>

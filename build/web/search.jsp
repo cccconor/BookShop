@@ -105,27 +105,27 @@
                               out.print("<tr><td>没有你要搜索的这本书。。。</td></tr>");
                           }
                           else {
-                              out.print("<tr><td><a href='bookdetails.jsp?id="+b.getid()+"'>查看详情</a></td>");
-                              out.print("<td>"+b.gettitle()+"</td>");
-                              out.print("<td>"+b.getauthor()+"</td>");
-                              out.print("<td>"+b.getisbn()+"</td>");
-                              out.print("<td>"+b.getpublish(b.getpublishid())+"</td>");
-                              out.print("<td>"+b.getcondes()+"</td></tr>");
+                              out.print("<tr><td><a href='bookdetails.jsp?id="+b.getid()+"'><img class='bookimg' src='images/BookCovers/"+f +".jpg' alt=' ' /></a></a></td>");
+                              out.print("<td valign='center'>"+b.gettitle()+"</td>");
+                              out.print("<td valign='center'>"+b.getauthor()+"</td>");
+                              out.print("<td valign='center'>"+b.getisbn()+"</td>");
+                              out.print("<td valign='center'>"+b.getpublish(b.getpublishid())+"</td>");
+                              out.print("<td></td></tr>");
                           }
                       }else {
                           f=(String) request.getParameter("key");
                            r = b.searchbook(f);
                            while(r.next())
                       {
-                          out.print("<tr><td><a href='bookdetails.jsp?id="+r.getInt("Id")+"'>查看详情</a></td>");
-                          out.print("<td>");
+                          out.print("<tr><td><a href='bookdetails.jsp?id="+r.getInt("Id")+"'><img class='bookimg' src='images/BookCovers/"+r.getString("ISBN") +".jpg' alt=' ' /></a></td>");
+                          out.print("<td valign='center'>");
                           out.print(r.getString("Title"));
-                          out.print("</td><td>");
+                          out.print("</td><td valign='center'>");
                           out.print(r.getString("Author"));
-                          out.print("</td><td>");
+                          out.print("</td><td valign='center'>");
                           out.print(r.getString("PublishDate"));
-                          out.print("</td><td>");
-                          out.print(r.getString("ContentDescription"));
+                          out.print("</td><td valign='center'>");
+                          
                           out.print("</td></tr>");
                       }
                       }
