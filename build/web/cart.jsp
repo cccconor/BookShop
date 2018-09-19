@@ -184,11 +184,18 @@
 	      <div class="section group">
                   
                   <div>
-                      <script>
+                                <script>
                                   function fu(var op){
                                       var shu = document.getElementById("shuliang");
-                                      if(op=="addone")shu.values()=shu.values()+1;
-                                      else if(op=="cutone")shu.values()=shu.values()-1;
+                                      if(op=="addone"){
+                                          shu.values()=shu.values()+1;
+                                          this.location.href="cartop?uid=<%=u.getid() %>&bid=<%=b.getid() %>&ope=cut&page=cart.jsp";
+                                      }
+                                      else if(op=="cutone"){
+                                          shu.values()=shu.values()-1;
+                                          this.location.href="cartop?uid=<%=u.getid() %>&bid=<%=b.getid() %>&ope=cut&page=cart.jsp";
+                                      }
+                                      
                                   }
                               </script>
                       
@@ -204,6 +211,7 @@
                                   int uid=u.getid();
                               
                               %>
+                                                    
                               <tr>
                                   <td>
                                   <span><%=b.gettitle()%><input type="hidden" name="uid" value="<%=uid%>"/></span>
