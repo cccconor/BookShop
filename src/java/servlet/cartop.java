@@ -92,6 +92,11 @@ public class cartop extends HttpServlet {
             {
                 c.cleancart(uid);
                  response.setHeader("refresh", "0;url=cart.jsp");
+            }else if(op.equals("shuru")){
+                int shu = Integer.valueOf(request.getParameter("sh"));
+                if(shu<0)shu=0;
+                c.shuru(uid, bid, shu);
+                response.setHeader("refresh", "0;url=cart.jsp");
             }
             
 //            String user =  (String)request.getParameter("user");

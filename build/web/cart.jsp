@@ -184,10 +184,26 @@
 	      <div class="section group">
                   
                   <div>
+                                <script>
+                                  function fu(var op){
+                                      var shu = document.getElementById("shuliang");
+                                      if(op=="addone"){
+                                          shu.values()=shu.values()+1;
+                                          this.location.href="cartop?uid=<%=u.getid() %>&bid=<%=b.getid() %>&ope=cut&page=cart.jsp";
+                                      }
+                                      else if(op=="cutone"){
+                                          shu.values()=shu.values()-1;
+                                          this.location.href="cartop?uid=<%=u.getid() %>&bid=<%=b.getid() %>&ope=cut&page=cart.jsp";
+                                      }
+                                      
+                                  }
+                              </script>
                       
-                      
+                      <form method="post" action="dingdan">
                       <table id="tab" width="800px" height="100px">
+                          
                           <%
+                              int i=0;
                               while(r.next())
                               {
                                   b = b.getbookbyid(r.getInt("BookId"));
@@ -195,7 +211,25 @@
                                   int uid=u.getid();
                               
                               %>
-			<tr>
+                                                    
+                              <tr>
+                                  <td>
+                                  <span><%=b.gettitle()%><input type="hidden" name="uid" value="<%=uid%>"/></span>
+                                  </td>
+                                  <td>
+                                  <span>单价：<%=b.getprice() %><input type="hidden" name="bid<%=i%>" value="<%=bid%>"/> </span>
+                                  </td>
+                                  <td>
+                                  <span>
+                                      <input class="min" id="addone" name="" type="button" value="-"onclick="fu(addone)" />
+                                      <input class="text_box" id="shuliang" name="shuliang<%=i%>" type="number" value="<%=r.getInt("Count") %>" placeholder="0" />
+                                      <input class="add" id="cutone" name="" type="button" value="+" onclick="fu(cutone)" />
+                                  </span>
+                                  </td>
+                          </tr>
+                              
+                              
+<!--			<tr>
 				<td>
                                                                                                 <span><%=b.gettitle()%></span>
                                                                             </td>
@@ -204,11 +238,22 @@
                                                                             </td>
                                                                             <td>
 					<input class="min" name="" type="button" value="-"onclick="location.href='cartop?uid=<%=uid%>&bid=<%=bid%>&ope=cut&page=cart.jsp'" />
-                                        <input class="text_box" id="shuliang" name="" type="number" value="<%=r.getInt("Count") %>" placeholder="0"/>
+                                        <input class="text_box" id="shuliang" name="" type="number" value="<%=r.getInt("Count") %>" placeholder="0" onchange="fu()"/>
                                         <input class="add" name="" type="button" value="+" onclick="location.href='cartop?uid=<%=uid%>&bid=<%=bid%>&ope=add&page=cart.jsp'" />
 				</td>
-			</tr>
-                        <%} %>
+			</tr>-->
+                        <% i++; }
+%>
+<tr><td>
+        <p>总价：<label id="total"><%=c.gettotal(u.getid()) %></label><input type="hidden" name="con" value="<%=i%>"/></p>
+    <td/></tr>
+<tr><td>
+                        <p><input type="submit" value="提交订单"></p>
+    </td><td>
+        <a href="cartop?uid=<%=u.getid()%>&ope=clean&bid=0" float="right"><button>清空购物车</button></a>
+    </td>
+</tr>
+                        
 <!--			<tr>
 				<td>
 					<span>单价:</span><span class="price">20.00</span>
@@ -217,13 +262,14 @@
 					<input class="add" name="" type="button" value="+" />
 				</td>
 			</tr>-->
-		</table>
-                        <p>总价：<label id="total"><%=c.gettotal(u.getid()) %></label></p>
+                          	
+                      </table>
+                        </form>
                         
-                        <br><br>
+<!--                        <br><br>
                         <a href="#"><button>提交订单</button></a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="cartop?uid=<%=u.getid()%>&ope=clean&bid=0" float="right"><button>清空购物车</button></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                        
                 
                       
                       
