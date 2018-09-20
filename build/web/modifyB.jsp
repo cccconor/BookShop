@@ -57,7 +57,7 @@
        rb.next();
     %>
     <form method="post" action="fin_MB?id=<%=bid%>">
-    <table  align="left">
+    <table  width="700px" align="center">
         <caption><b>修改图书信息</b></caption>
         
             <tr>

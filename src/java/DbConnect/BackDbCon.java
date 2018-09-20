@@ -28,9 +28,11 @@ public class BackDbCon {
     
     public BackDbCon(){
         try{
-                        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3";
-                         conn = DriverManager.getConnection(url, "sa", "sms");
+//                        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3";
+                           Class.forName("com.mysql.jdbc.Driver");
+                            url = "jdbc:mysql://localhost:3306/book_shop3"; 
+                         conn = DriverManager.getConnection(url, "sa", "Sms7813@");
                          stmt=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY); 
                 }catch (Exception e){
                     e.printStackTrace();

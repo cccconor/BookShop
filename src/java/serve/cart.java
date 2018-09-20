@@ -74,7 +74,7 @@ public class cart {
             int i=db.executeupdate(sql);
             if(i!=0)return true;
         }else {
-            sql = "insert into Cart values("+uid+","+bid+","+1+")";
+            sql = "insert into Cart (UserId,BookId,Count) values("+uid+","+bid+","+1+")";
             int k=db.executeupdate(sql);
             if(k!=0)return true;
         }
@@ -149,7 +149,7 @@ public class cart {
     public boolean dingdan(String oid,int bid,int shu,double price,int uid) throws SQLException
         {
 //            dingdan4(oid,uid,0.0);
-            sql = "insert into OrderBook values('"+oid+"',"+bid+","+shu+","+price+")";
+            sql = "insert into OrderBook (OrderID,BookID,Quantity,UnitPrice) values('"+oid+"',"+bid+","+shu+","+price+")";
             System.out.println(sql);
             return db.executeupdate(sql)!=0;
         }
@@ -172,7 +172,7 @@ public class cart {
       
       public boolean dingdan4(String od,int uid,double totalprice) throws SQLException
       {
-          sql = "insert into Orders (OrderId,OrderDate,UserId,TotalPrice) values('"+od+"',getdate(),"+uid+","+totalprice+")";
+          sql = "insert into Orders (OrderId,OrderDate,UserId,TotalPrice,state) values('"+od+"',now(),"+uid+","+totalprice+",0)";
 //          sql = "update Orders set TotalPrice="+totalprice+" where OrderId="+od+" and UserId="+uid;
           System.out.println(sql);
           return db.executeupdate(sql)!=0;

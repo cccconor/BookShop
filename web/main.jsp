@@ -223,7 +223,7 @@
                 //String sql="select a.sid,a.name,a.sex,c.cid,c.name,b.score from student a left join grade b on a.sid=b.sid left join course c on b.cid=c.cid;";
                 //ResultSet re =main.test();
                 book b =new book();
-                ResultSet re = b.getbooks(curpage, 30);
+                ResultSet re = b.getbooks(curpage, 10);
                 String s;
                 while(re.next()){
                     //out.print("<td>"+re.getString(1)+re.getString(2)+re.getString(3)+re.getString(5)+re.getString(6)+re.getString(7)+"</td>");

@@ -91,10 +91,10 @@ public class activationck extends HttpServlet {
                 ResultSet r2 = db.executeQuery(sql);
                 if(r2.next()&&r2.getString("ActiveCode").equals(actcode))
                 {
-                    sql = "update CheckEmail set Actived = 'true' where Id = '" + id +"'";
-                    db.executeQuery(sql);
+                    sql = "update CheckEmail set Actived = '1' where Id = '" + id +"'";
+                    db.executeupdate(sql);
                     sql = "update Users set UserStateId = 1 where Id = '" + id + "'";
-                    db.executeQuery(sql);
+                    db.executeupdate(sql);
                     session.setAttribute("user", name);
                     out.println("<script language ='javaScript'>alert('激活成功！');</script>");
                     response.setHeader("refresh", "0;url=main.jsp");

@@ -146,7 +146,7 @@
                          
                      
                      </td> 
-                    <td><%=rs.getDate (5)%></td> 
+                    <td><%=rs.getDate(5)%></td> 
                     <td><a href="modifyR.jsp?id=<%=rs.getInt(1)%>">修改</a></td>
                 </tr>
        

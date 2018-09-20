@@ -30,9 +30,12 @@ public class DbCon {
         public DbCon() //throws SQLException
 	{
                 try{
-                        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3;useUnicode=true;characterEncoding=utf8";
-                         conn = DriverManager.getConnection(url, "sa", "sms");
+                        
+//                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3;useUnicode=true;characterEncoding=utf8";
+                            Class.forName("com.mysql.jdbc.Driver");
+                            url = "jdbc:mysql://localhost/book_shop3";
+//                            url = "jdbc:mysql://118.24.146.26/book_shop3";
+                            conn = DriverManager.getConnection(url, "sa", "Sms7813@");
                          stmt=conn.createStatement(); 
                 }catch (Exception e){
                     e.printStackTrace();
@@ -91,8 +94,10 @@ public class DbCon {
         public int adduser(user u) throws SQLException
         {
             System.out.println(u.getAddr());
-            sql = "insert into Users values(?,?,?,?,?,?,?)";
+            sql = "insert into Users (LOginId,LoginPwd,Name,Address,Phone,Mail,UserStateId) values(?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
+//            int tem = Integer.valueOf(u.getPhone());
+//            pstmt.setInt(1, tem);
             pstmt.setString(1, u.getName());
             pstmt.setString(2, u.getPsd());
             pstmt.setString(3, u.getName());
@@ -110,7 +115,7 @@ public class DbCon {
                 String url = "localhost:8080/BookShop/activationck?user=" + u.getName()+"&actcode="+md;
                 String s = "亲爱的"+u.getName()+"你好，你的激活码是   " + md + "    或者你可以点击下面的链接进行激活："+"<a href = '"+url+"'>点此前往激活页面</a>";
                 s= s +"如果没有反应请复制下面的链接到地址栏中访问激活页面：      "+url;
-                sql = "insert into CheckEmail values((select Id from Users where Name = '" + u.getName() + "'),'false','" + md +"')";
+                sql = "insert into CheckEmail values((select Id from Users where Name = '" + u.getName() + "'),'0','" + md +"')";
                 if(stmt.executeUpdate(sql)!=0)
                 {
                     mailserv m = new mailserv();

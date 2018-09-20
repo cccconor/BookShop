@@ -272,7 +272,8 @@ public class book {
     public ResultSet getbooks(int i,int num)
     {
         int start = (num-1)*(i-1);
-        String sql = "SELECT TOP "+num+" * " +"FROM Books" +" WHERE Id NOT IN" +"(SELECT TOP "+start+" Id FROM Books ORDER BY Id)";
+//        String sql = "SELECT TOP "+num+" * " +"FROM Books" +" WHERE Id NOT IN" +"(SELECT TOP "+start+" Id FROM Books ORDER BY Id)";
+       String sql = "select * from Books limit "+num*(i-1)+", 30";
         DbCon db = new DbCon();
         ResultSet r = db.executeQuery(sql);
         return r;
