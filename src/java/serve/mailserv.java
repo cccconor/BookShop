@@ -47,7 +47,7 @@ public class mailserv {
 //            props.setProperty("mail.smtp.socketFactory.port", "465");
 //            props.put("mail.smtp.auth", "true");
 //            final String username = "zhujunxin01@163.com";
-//            final String password = "zjx781354338";
+//            final String password = "**************";
 //            //获取到邮箱会话,利用匿名内部类的方式,将发送者邮箱用户名和密码授权给jvm
 //             session = Session.getInstance(props, new Authenticator() {
 //                protected PasswordAuthentication getPasswordAuthentication() {
