@@ -41,7 +41,7 @@ public class mailserv {
         session = Session.getDefaultInstance(properties,new Authenticator(){
             public PasswordAuthentication getPasswordAuthentication()
             {
-                return new PasswordAuthentication("zhujunxin01@163.com","zjx781354338");
+                return new PasswordAuthentication("zhujunxin01@163.com","*********");
             }
         });
         
