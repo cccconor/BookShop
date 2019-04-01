@@ -81,8 +81,8 @@
 			<div class="account_desc">
 				<ul>
 					<li><a href="main.jsp">主页</a></li>
-					<li><a href="login.html">注册</a></li>
-					<li><a href="login.html">登陆</a></li>
+					<li><a href="index.html">注册</a></li>
+					<li><a href="index.html">登陆</a></li>
 					<li><a href="cart.jsp">购物车</a></li>
 					<li><a href="repsd.jsp">用户信息</a></li>
                                                                                                 <li><a href="logout">注销登陆</a></li>

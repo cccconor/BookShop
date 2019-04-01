@@ -33,8 +33,8 @@ public class DbCon {
                         
 //                         url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=book_shop3;useUnicode=true;characterEncoding=utf8";
                             Class.forName("com.mysql.jdbc.Driver");
-                            url = "jdbc:mysql://localhost/book_shop3";
-//                            url = "jdbc:mysql://118.24.146.26/book_shop3";
+                            url = "jdbc:mysql://localhost/book_shop3?characterEncoding=utf8";
+//                            url = "jdbc:mysql://118.24.146.26/book_shop3?characterEncoding=utf8";
                             conn = DriverManager.getConnection(url, "sa", "Sms7813@");
                          stmt=conn.createStatement(); 
                 }catch (Exception e){

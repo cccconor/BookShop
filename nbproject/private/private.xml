@@ -2,18 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/softwaredata/github/BookShop/web/main.jsp</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/serve/cart.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/serve/pageserv.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/DbConnect/BookCon.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/dingdan.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/reinfo.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/JudgeLogin.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/DbConnect/DbCon.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/signup.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/serve/book.java</file>
-            <file>file:/E:/softwaredata/github/BookShop/src/java/servlet/UploadServlet.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

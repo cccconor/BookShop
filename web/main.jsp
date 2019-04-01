@@ -113,8 +113,8 @@
 			<div class="account_desc">
 				<ul>
                                                                                                 <li><a href="main.jsp">主页</a></li>
-					<li><a href="login.html">注册</a></li>
-					<li><a href="login.html">登陆</a></li>
+					<li><a href="index.html">注册</a></li>
+					<li><a href="index.html">登陆</a></li>
 					<li><a href="cart.jsp">购物车</a></li>
 					<li><a href="repsd.jsp">用户信息</a></li>
                                                                                                 <li><a href="logout">注销登陆</a></li>
@@ -256,7 +256,7 @@
                         <a href="main.jsp?curpage=<%=pages.gettotalpage()%>">末页</a>&nbsp;&nbsp;
                     <a href="" id="123">共<%=pages.gettotalpage()%>页，<%=pages.gettotalrecord()%>条记录</a>
                 </p>
-                <p>这里是主页。。。<a href="repsd.jsp">前往用户信息详情页</a></p>
+
                   
                   
                   
